@@ -9,6 +9,85 @@
                 <meta name="robots" content="index,follow">
                 <link rel="stylesheet" href="./css/style.css">
               </head>
-              <body id="ibdevg"><form method="get" id="i7is33"><div class="gjs-grid-row" id="iz8d5s"><div class="mask"></div><div class="mask"><div id="ic55ig">Product 1</div></div><div class="mask" id="iqi53l"><div id="ii3mvc">Product 2</div></div></div><div class="gjs-grid-row" id="i4atz6"><div class="mask"><div id="i9huk3">Price</div></div><div class="mask" id="ieii3y"><div id="i9s8ji">￥100</div><div id="p1"></div></div><div class="mask"><div id="p2"></div><div id="iyhgcu">￥200</div></div></div><div class="gjs-grid-row" id="iztz2s"><div class="mask"><div id="i2oeap">Feature</div></div><div class="mask"><div id="f1"></div><div id="i76pbj">Low</div></div><div class="mask"><div id="f2"></div><div id="imtdfd">High</div></div></div><div class="gjs-grid-row" id="ickb6i"><div class="mask"></div><div class="mask"><button type="submit" id="iw6n9g">Select product 1</button></div><div class="mask"><button type="submit" id="i0mzyu">Select product 2</button></div></div></form></body>
+              <body id="ibdevg"><form method="get" id="i7is33"><div class="gjs-grid-row" id="iz8d5s"><div class="mask"></div><div class="mask"><div id="ic55ig">Product 1</div></div><div class="mask" id="iqi53l"><div id="ii3mvc">Product 2</div></div></div><div class="gjs-grid-row" id="i4atz6"><div class="mask"><div id="i9huk3">Price</div></div><div class="mask" id="ieii3y"><div id="i9s8ji">￥100</div><div id="p1"></div></div><div class="mask"><div id="p2"></div><div id="iyhgcu">￥200</div></div></div><div class="gjs-grid-row" id="iztz2s"><div class="mask"><div id="i2oeap">Feature</div></div><div class="mask"><div id="f1"></div><div id="i76pbj">Low</div></div><div class="mask"><div id="f2"></div><div id="imtdfd">High</div></div></div><div class="gjs-grid-row" id="ickb6i"><div class="mask"></div><div class="mask"><button type="submit" id="iw6n9g">Select product 1</button></div><div class="mask"><button type="submit" id="i0mzyu">Select product 2</button></div></div></form>
+
+<script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+        //user name input
+        var username = prompt("请输入您的ID：");
+        
+        // define database url
+        var dta_url = "http://polarhare.eu.pythonanywhere.com//get_mousedata";
+        
+        // page log
+        $.getJSON(
+          dta_url,
+          {username: username,
+          timeMark: Date.now(),
+          objname: window.location.pathname,
+          action: "landing",
+          x: 0,
+          y: 0 })
+                 
+        // mouse enter detection
+        $('*[id^=tracks]:visible').each(function(){
+            $(this).mouseenter(function(event){
+                $.getJSON(
+                  dta_url,
+                  {username: username,
+                  timeMark: Date.now(),
+                  objname: this.id,
+                  action: "mouseenter",
+                  x: event.originalEvent.x,
+                  y: event.originalEvent.x })
+            });
+        });
+        
+        // mouse leave detection
+        $('*[id^=tracks]:visible').each(function(){
+            $(this).mouseleave(function(event){
+                $.getJSON(
+                  dta_url,
+                  {username: username,
+                  timeMark: Date.now(),
+                  objname: this.id,
+                  action: "mouseleave",
+                  x: event.originalEvent.x,
+                  y: event.originalEvent.x })
+            });
+        });
+
+        // mouse up detection
+        $('*[id^=tracks]:visible').each(function(){
+            $(this).mouseup(function(event){
+                $.getJSON(
+                  dta_url ,
+                  {username: username,
+                  timeMark: Date.now(),
+                  objname: this.id,
+                  action: "mouseup",
+                  x: event.originalEvent.x,
+                  y: event.originalEvent.x })
+            });
+        });
+
+        // mouse down detection
+        $('*[id^=tracks]:visible').each(function(){
+            $(this).mousedown(function(event){
+                $.getJSON(
+                  dta_url ,
+                  {username: username,
+                  timeMark: Date.now(),
+                  objname: this.id,
+                  action: "mousedown",
+                  x: event.originalEvent.x,
+                  y: event.originalEvent.x })
+            });
+        });
+
+        </script>
+
+
+</body>
             </html>
           
